@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="Mubarak Adeshina">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <title>student form</title>
+</head>
+<body>
+<div class = "container">
+    <h3> New Student (Advisee) Form </h3>
+
+    <form th:action="@{/newstudent}"  th:object="${newStudent}" method="post">
+
+<!--        <div class="form-group">-->
+<!--            &lt;!&ndash; th:text="${(account.customer.customerNumber)  + ' - ' + (account.customer.firstName) + ' ' + (account.customer.lastName) }"  &ndash;&gt;-->
+<!--            <label for="StudentNumber">Student Number</label>-->
+<!--            &lt;!&ndash; <input type="text" class="form-control" id="StudentNumber" placeholder=" required" th:field="*{customerNumber}"  >-->
+<!--            <label for="supplier">Type of Account </label> &ndash;&gt;-->
+
+<!--            <select id="StudentNumber" th:field="*{studentNumber}"  class="form-control">-->
+<!--                <option th:each="customer: ${customers}" th:value="${customer.customerId}" th:text="${(customer.customerNumber)  + ' - ' + (customer.firstName) + ' ' + (customer.lastName) }"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+        <div class="form-group">
+        <label th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}">Error Student Number</label>
+        <label for ="StudentNumber" >Student Number</label>
+        <input type="text" class="form-control" id="StudentNumber" placeholder="required e.g 001-000" th:field ="*{studentNumber}" required>
+    </div>
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Error Full Name</label>
+            <label for ="fullName" >Full Name</label>
+            <input type="text" class="form-control" id="fullName" placeholder="required e.g John Smith" th:field ="*{fullName}" required >
+        </div>
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{phoneNumber}">Error phone Number</label>
+            <label for ="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="optional" th:field ="*{phoneNumber}" >
+        </div>
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Error Student Number</label>
+            <label for ="email">Email Address</label>
+            <input type="text" class="form-control" id="email" placeholder="required" th:field ="*{emailAddress}" required >
+        </div>
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('dateOfAdmission')}" th:errors="*{dateOfAdmission}">Error Student Number</label>
+            <label for ="date">Date of Admission</label>
+            <input type="date" class="form-control" id="date" placeholder="required" th:field ="*{dateOfAdmission}" required >
+        </div>
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}">Error cgpa</label>
+            <label for ="cgpa" >CGPA</label>
+            <input type="text" class="form-control" id="cgpa" placeholder="optional" th:field ="*{cgpa}" >
+        </div>
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('advisor')}" th:errors="*{advisor}">Error advisor</label>
+            <label for="advisor" >Faculty Advisor </label>
+
+            <select id="advisor" th:field="*{advisor}"  class="form-control">
+                <option th:each="facultyAdvisor: ${Faculty}" th:value="${facultyAdvisor.facultyId}" th:text="${facultyAdvisor.fullName}"></option>
+            </select>
+        </div>
+
+
+
+        <p></p>
+        <a class="btn btn-primary" href="/allstudents" >Cancel</a> &nbsp;
+        <button type="submit" class="btn btn-primary">Register Student</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>
